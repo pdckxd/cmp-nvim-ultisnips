@@ -30,9 +30,15 @@ for snippet in snippets:
     if is_context_snippet and not snippet._context_match(visual_content, before):
         continue
 
+    trigger_txt = snippet._trigger
+    if is_regex_snippet:
+      trigger_txt = before + ' -> ' + snippet._trigger
+
+    # "'trigger': py3eval('snippet._trigger'),"
     vim.command(
       "call add(g:_cmpu_current_snippets, {"
-      "'trigger': py3eval('snippet._trigger'),"
+      "'trigger': py3eval('trigger_txt'),"
+      "'org_trigger': py3eval('snippet._trigger'),"
       "'description': py3eval('snippet._description'),"
       "'options': py3eval('snippet._opts'),"
       "'value': py3eval('snippet._value'),"

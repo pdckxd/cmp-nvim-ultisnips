@@ -50,7 +50,7 @@ function M.documentation(snippet)
   if description:match('".*"') then
     description = description:sub(2, -2)
   end
-  return string.format("*%s*\n\n%s", description, formatted_value)
+  return string.format("*Snippets\n----\n*%s\n*%s*\n\n%s", snippet.org_trigger, description, formatted_value)
 end
 
 return M
